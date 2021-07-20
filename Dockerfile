@@ -5,6 +5,6 @@ COPY pom.xml /usr/src/app
 RUN mvn -f /usr/src/app/pom.xml clean package
 ## Package stage
 FROM gcr.io/distroless/java  
-COPY --from=build /usr/src/app/target/*.jar /usr/app/test_app.jar  
+COPY --from=build /usr/src/app/target/test_app-1.0.jar /usr/app/test_app-1.0.jar  
 EXPOSE 8080  
-ENTRYPOINT ["java","-jar","/usr/app/test_app.jar"]  
+ENTRYPOINT ["java","-jar","/usr/app/test_app-1.0.jar"]  
