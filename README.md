@@ -1,31 +1,50 @@
-### Java pipeline
+# Java pipeline
+---
+Create a directory named "JavaDev/" \
+Add a sample maven project "test_app" to test the pipeline build. \
 
-Create a directory named "JavaDev/" in the "Story1/" directory.\
-Add a sample code "TestApp.java" to test the pipeline build. 
 
-__TestApp.java__
+Code running in the maven build:
+__test_app__
 ```java
-//This is like putting glasses on the HelloWorld app. (blame Superman)
-package Story1.JavaDev;
-
-class TestApp {
+//From the src/main
+package com.example;
+/**
+ * Hello world! with flavour.
+ */
+public final class App {
+    private App() {
+    }
+    /**
+     * Shows the java build works.
+     * @param args The arguments of the program.
+     */
     public static void main(String[] args) {
-        System.out.println("The Java side works!"); 
+        System.out.println("Java pipeline works");
     }
 }
+
 ```
+Check if the build runs without errors
+
+```bash
+mvn compile
+## You should have "BUILD SUCCESS" visible in your prompt after completion.
+```
+
+
 Create a Dockerfile to generate images for builds. 
 
 __Dockerfile__
 ```Dockerfile
-# Get the official java container 
-FROM openjdk
+# Get the official maven container 
+FROM maven
 # Set the directory to use for the apps
 WORKDIR /apps
 # Copy ANY java app in this directory to the container /apps directory.
-COPY ./*.java .
+COPY ./test_app .
 ```
 
-jenkins
+Jenkins
 
 in global tool configuration:add Maven installation "maven_build"
