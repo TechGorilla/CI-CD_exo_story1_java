@@ -25,6 +25,7 @@ public final class App {
 }
 
 ```
+
 Check if the build runs without errors
 
 ```bash
@@ -32,9 +33,7 @@ mvn compile
 ## You should have "BUILD SUCCESS" visible in your prompt after completion.
 ```
 
-
 Create a Dockerfile to generate images for builds. 
-
 __Dockerfile__
 ```Dockerfile
 # Get the official maven container 
@@ -44,6 +43,16 @@ WORKDIR /apps
 # Copy ANY java app in this directory to the container /apps directory.
 COPY ./test_app .
 ```
+
+Check if the build runs without errors
+
+```Docker
+# build the image from the Dockerfile
+docker build -t java_dev .
+# check the container
+docker -run -it java_dev  
+# we're just testing, get in , check if the files are copied, run the compile command and exit the container.
+``` 
 
 Jenkins
 
